@@ -1,3 +1,5 @@
+from stats import get_num_words
+
 def sort_on(dict):
   return dict['count']
 
@@ -7,7 +9,7 @@ def main():
     char_counts = {}
     char_count_list = []
     file_contents = f.read().lower()
-    words = file_contents.split()
+    num_words = get_num_words(file_contents)
     chars = "".join(file_contents)
 
     for char in chars:
@@ -23,7 +25,7 @@ def main():
     char_count_list.sort(key=sort_on, reverse=True)
 
     print(f"--- Begin report of {file_path} ---")
-    print(f"{len(words)} found in the document\n")
+    print(f"Found {num_words} total words\n")
     for entry in char_count_list:
       print(f"The '{entry["char"]}' character was found {entry["count"]} times")
     print("--- End report ---")
